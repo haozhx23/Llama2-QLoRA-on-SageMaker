@@ -1,0 +1,8 @@
+protobuf==3.20.1
+accelerate @ git+https://github.com/huggingface/accelerate.git
+datasets==2.13.1
+transformers @ git+https://github.com/huggingface/transformers.git
+peft @ git+https://github.com/huggingface/peft.git
+trl @ git+https://github.com/lvwerra/trl.git
+scipy
+bitsandbytes>=0.41.1
