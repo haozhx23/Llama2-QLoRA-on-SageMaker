@@ -30,15 +30,15 @@ def get_model(properties):
 def inference(inputs):
     try:
         input_map = inputs.get_as_json()
-        data = input_map.pop("inputs", input_map)
+        texts = input_map.pop("inputs", input_map)
         parameters = input_map.pop("parameters", {})
         outputs = Output()
-        
-        input_tokens = tokenizer(data, padding=True, return_tensors="pt").to(torch.cuda.current_device())
-        output_tokens = model.generate(input_tokens.input_ids, **parameters)
-        generated_text = tokenizer.batch_decode(output_tokens, skip_special_tokens=True)
-        
-        outputs.add_as_json([{"generated_text": s} for s in generated_text])
+
+        input_tensors = tokenizer(texts, padding=True, return_tensors="pt").input_ids.to(torch.cuda.current_device())
+        output_tensors = model.generate(input_tensors, **parameters)
+        output_texts = tokenizer.batch_decode(output_tensors, skip_special_tokens=True)
+
+        outputs.add_as_json({"generated_texts": output_texts})
         return outputs
     except Exception as e:
         logging.exception("Huggingface inference failed")
