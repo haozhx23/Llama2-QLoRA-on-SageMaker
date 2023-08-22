@@ -5,8 +5,8 @@ This experiment is based on Amazon SageMaker. Training a Bloke Llama2 adapter wi
 Resources:
 
 **Notebook Instance** - ml.c5.xlarge<br/>
-**Training** - ml.g5.4xlarge<br/>
-**Hosting** - ml.g5.2xlarge
+**Training** - ml.g5.xlarge ~ ml.g5.4xlarge<br/>
+**Hosting** - ml.g4dn.xlarge ~ ml.g5.4xlarge
 
 <br/>
 
