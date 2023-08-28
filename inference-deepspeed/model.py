@@ -17,9 +17,7 @@ def get_model(properties):
     model = AutoModelForCausalLM.from_pretrained(model_name, low_cpu_mem_usage=True, torch_dtype=torch.bfloat16, device_map='auto')
     
     model = deepspeed.init_inference(model,
-                                   tensor_parallel={"tp_size": tensor_parallel_degree},
-                                   dtype=torch.float16,
-                                   replace_method='auto'
+                                   tensor_parallel={"tp_size": tensor_parallel_degree}
                                    )
     
     tokenizer = AutoTokenizer.from_pretrained(model_name)
